@@ -8,11 +8,6 @@ jobs:
     steps:
       - name: "Send notification"
         run: |
-          curl -v -H -X POST 'Content-Type: application/json' -d '{ "payload": ${{ env.EVENT }} }' -L "https://httpbin.org/post"
+          curl -v -H -X POST 'Content-Type: application/json' -d '{ ${{ env.EVENT }} }' -L "https://httpbin.org/post"
         env:
-          EVENT: ${{ toJson(github) }}
-          # CHANNEL_ID: "C02B8STDD6U"
-          # DISCUSSION_URL: ${{ github.event.discussion.html_url }}
-          # DISCUSSION_TITLE: ${{ github.event.discussion.title }}
-          # DISCUSSION_BODY: ${{ github.event.discussion.body }}
-          # USER_NAME: ${{ github.event.discussion.user.login }}
+          EVENT: ${{ toJson(github.event) }}
