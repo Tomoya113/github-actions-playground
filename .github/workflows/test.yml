@@ -1,0 +1,13 @@
+name: "test"
+on:
+  discussion:
+    types: [created]
+jobs:
+  main:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: "Send notification"
+        run: |
+          curl -v -H -X POST 'Content-Type: application/json' -d '{ "payload": ${{ env.EVENT }} }' -L "https://httpbin.org/post"
+        env:
+          EVENT: ${{ github.event }}
