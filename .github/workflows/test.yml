@@ -8,6 +8,6 @@ jobs:
     steps:
       - name: "Send notification"
         run: |
-          curl -v -H -X POST 'Content-Type: application/json' -d '{ ${{ env.EVENT }} }' -L "https://httpbin.org/post"
+          curl -v -H -X POST 'Content-Type: application/json' -d '${{ env.EVENT }}' -L "https://httpbin.org/post"
         env:
           EVENT: ${{ toJson(github.event) }}
