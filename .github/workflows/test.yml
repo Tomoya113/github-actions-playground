@@ -10,4 +10,9 @@ jobs:
         run: |
           curl -v -H -X POST 'Content-Type: application/json' -d '{ "payload": ${{ env.EVENT }} }' -L "https://httpbin.org/post"
         env:
-          EVENT: ${{ github.event }}
+          EVENT: ${{ toJson(github) }}
+          # CHANNEL_ID: "C02B8STDD6U"
+          # DISCUSSION_URL: ${{ github.event.discussion.html_url }}
+          # DISCUSSION_TITLE: ${{ github.event.discussion.title }}
+          # DISCUSSION_BODY: ${{ github.event.discussion.body }}
+          # USER_NAME: ${{ github.event.discussion.user.login }}
